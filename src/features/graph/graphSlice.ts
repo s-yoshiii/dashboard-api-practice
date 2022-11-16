@@ -20,3 +20,20 @@ export const fetchAsyncGetDaily = createAsyncThunk(
     return { data: data, pref: pref };
   }
 );
+
+const graphSlice = createSlice({
+  name: "graph",
+  initialState: initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchAsyncGetDaily.fulfilled, (state, action) => {
+      return {
+        ...state,
+        daily: action.payload.data,
+        pref: action.payload.pref,
+      };
+    });
+  },
+});
+
+export default graphSlice.reducer;
