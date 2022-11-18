@@ -1,23 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../../app/store";
-import dataDaily from "./data.json";
-const apiUrl = "https://opendata.corona.go.jp/api/Covid19JapanAll";
+import dataDaily from "./apiData.json";
+const apiUrl = "https://api.covid19api.com/total/country/country";
 type DATADAILY = typeof dataDaily;
-type covid19JapanState = {
+type covidState = {
   daily: DATADAILY;
-  pref: string;
+  country: string;
 };
-const initialState: covid19JapanState = {
+const initialState: covidState = {
   daily: dataDaily,
-  pref: "東京都",
+  country: "Japan",
 };
 
 export const fetchAsyncGetDaily = createAsyncThunk(
   "covid/getDaily",
-  async (pref: string) => {
-    const { data } = await axios.get<DATADAILY>(`${apiUrl}?dataName=${pref}`);
-    return { data: data, pref: pref };
+  async (country: string) => {
+    const { data } = await axios.get<DATADAILY>(`${apiUrl}/${country}`);
+    return { data: data, country: country };
   }
 );
 
@@ -30,10 +30,13 @@ const graphSlice = createSlice({
       return {
         ...state,
         daily: action.payload.data,
-        pref: action.payload.pref,
+        country: action.payload.country,
       };
     });
   },
 });
+
+export const selectDaily = (state: RootState) => state.graph.daily;
+export const selectCountry = (state: RootState) => state.graph.country;
 
 export default graphSlice.reducer;
