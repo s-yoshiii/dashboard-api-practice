@@ -1,12 +1,12 @@
 import React from "react";
-import "./App.css";
+import { Container } from "@mui/system";
 import Cards from "./features/graph/Cards/Cards";
 
 function App() {
   return (
-    <div className="App">
+    <Container maxWidth="lg">
       <Cards />
-    </div>
+    </Container>
   );
 }
 
