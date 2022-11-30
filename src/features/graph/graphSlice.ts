@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "../../app/store";
 import dataDaily from "./apiData.json";
-const apiUrl = "https://api.covid19api.com/total/country/country";
+const apiUrl = "https://api.covid19api.com/total/country";
 type DATADAILY = typeof dataDaily;
 type covidState = {
   daily: DATADAILY;
@@ -10,7 +10,7 @@ type covidState = {
 };
 const initialState: covidState = {
   daily: dataDaily,
-  country: "Japan",
+  country: "japan",
 };
 
 export const fetchAsyncGetDaily = createAsyncThunk(
