@@ -4,11 +4,10 @@ import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { selectDaily } from "../graphSlice";
 Chart.register(...registerables);
-const Charta = () => {
+const LineChart = () => {
   const daily = useSelector(selectDaily);
   const dates = daily.map(({ Date }) => Date);
-  console.log(daily);
-  const lineChart = daily[0] && (
+  const drawChart = daily[0] && (
     <Line
       data={{
         labels: dates.map((data) => new Date(data).toString()),
@@ -38,7 +37,7 @@ const Charta = () => {
       }}
     />
   );
-  return <div>{lineChart}</div>;
+  return <div>{drawChart}</div>;
 };
 
-export default Charta;
+export default LineChart;
