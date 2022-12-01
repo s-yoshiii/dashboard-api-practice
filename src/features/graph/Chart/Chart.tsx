@@ -3,7 +3,6 @@ import { Chart, registerables } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { selectDaily } from "../graphSlice";
-
 Chart.register(...registerables);
 const Charta = () => {
   const daily = useSelector(selectDaily);
@@ -17,9 +16,23 @@ const Charta = () => {
           {
             label: "Infected",
             data: daily.map((data) => data.Confirmed),
-            fill: false,
-            borderColor: "rgb(75, 192, 192)",
-            tension: 0.1,
+            backgroundColor: "rgba(161, 194, 152,0.8)",
+            borderColor: "#A1C298",
+            showLine: false,
+          },
+          {
+            label: "Recovered",
+            data: daily.map((data) => data.Recovered),
+            backgroundColor: "rgba(198, 235, 197,0.8)",
+            borderColor: "#C6EBC5",
+            showLine: false,
+          },
+          {
+            label: "Deaths",
+            data: daily.map((data) => data.Deaths),
+            backgroundColor: "rgba(250, 112, 112,0.8)",
+            borderColor: "#FA7070",
+            showLine: false,
           },
         ],
       }}
