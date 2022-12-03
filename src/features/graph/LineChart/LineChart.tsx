@@ -1,9 +1,9 @@
 import React from "react";
-import { Chart, registerables } from "chart.js";
+import { Chart as ChartJS, registerables } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { selectDaily } from "../graphSlice";
-Chart.register(...registerables);
+ChartJS.register(...registerables);
 const LineChart = () => {
   const daily = useSelector(selectDaily);
   const dates = daily.map(({ Date }) => Date);
