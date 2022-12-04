@@ -3,6 +3,7 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { useSelector } from "react-redux";
 import { selectDaily } from "../graphSlice";
+import { Typography } from "@mui/material";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart: FC = () => {
@@ -24,9 +25,27 @@ const PieChart: FC = () => {
           },
         ],
       }}
+      options={{
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "bottom",
+            labels: {
+              boxWidth: 15,
+            },
+          },
+        },
+      }}
     />
   );
-  return <div>{drawPieChart}</div>;
+  return (
+    <div>
+      <Typography variant="h4" align="center" color="primary" gutterBottom>
+        Motality {motality.toFixed(2)}[%]
+      </Typography>
+      {drawPieChart}
+    </div>
+  );
 };
 
 export default PieChart;
