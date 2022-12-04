@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { selectDaily } from "../graphSlice";
 ChartJS.register(...registerables);
-const LineChart = () => {
+const LineChart: FC = () => {
   const daily = useSelector(selectDaily);
   const dates = daily.map(({ Date }) => Date);
   const drawChart = daily[0] && (
