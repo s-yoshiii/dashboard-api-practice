@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Line } from "react-chartjs-2";
+import moment from "moment";
 import { useSelector } from "react-redux";
 import { selectDaily } from "../graphSlice";
 ChartJS.register(...registerables);
@@ -10,7 +11,7 @@ const LineChart: FC = () => {
   const drawChart = daily[0] && (
     <Line
       data={{
-        labels: dates.map((data) => new Date(data).toString()),
+        labels: dates.map((data) => moment(new Date(data)).format("MM/DD")),
         datasets: [
           {
             label: "Infected",
