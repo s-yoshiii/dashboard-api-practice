@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-import { NativeSelect, FormControl } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { NativeSelect, FormControl, InputLabel } from "@mui/material";
 import { useAppDispatch } from "../../../app/hooks";
 import { fetchAsyncGetDaily } from "../graphSlice";
 const SwitchCountry: FC = () => {
@@ -17,7 +16,8 @@ const SwitchCountry: FC = () => {
   ];
   return (
     <div>
-      <FormControl>
+      <FormControl sx={{ m: 1, minWidth: 240 }}>
+        <InputLabel variant="outlined">Country</InputLabel>
         <NativeSelect
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
             dispatch(fetchAsyncGetDaily(e.target.value))
@@ -30,7 +30,6 @@ const SwitchCountry: FC = () => {
           ))}
         </NativeSelect>
       </FormControl>
-      ;
     </div>
   );
 };
