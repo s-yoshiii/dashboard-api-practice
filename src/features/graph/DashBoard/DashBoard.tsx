@@ -53,7 +53,7 @@ const DashBoard: FC = () => {
         <Grid item xs={12} md={8}>
           <LineChart />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} sx={{ md: { mt: -5 } }}>
           <PieChart />
         </Grid>
       </Grid>

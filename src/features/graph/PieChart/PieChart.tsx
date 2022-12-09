@@ -22,16 +22,18 @@ const PieChart: FC = () => {
               daily[daily.length - 1].Deaths,
             ],
             backgroundColor: ["#A1C298", "#C6EBC5", "#FA7070"],
+            weight: 1,
           },
         ],
       }}
       options={{
         responsive: true,
+        cutout: 120,
         plugins: {
           legend: {
             position: "bottom",
             labels: {
-              boxWidth: 15,
+              boxWidth: 10,
             },
           },
         },
@@ -40,7 +42,7 @@ const PieChart: FC = () => {
   );
   return (
     <div>
-      <Typography variant="h4" align="center" color="primary" gutterBottom>
+      <Typography variant="h6" align="center" color="primary" gutterBottom>
         Motality {motality.toFixed(2)}[%]
       </Typography>
       {drawPieChart}

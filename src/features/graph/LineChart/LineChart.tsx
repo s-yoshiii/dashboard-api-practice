@@ -16,25 +16,38 @@ const LineChart: FC = () => {
           {
             label: "Infected",
             data: daily.map((data) => data.Confirmed),
-            backgroundColor: "rgba(161, 194, 152,0.8)",
+            backgroundColor: "rgba(161, 194, 152,0.4)",
             borderColor: "#A1C298",
             showLine: false,
+            fill: true,
           },
           {
             label: "Recovered",
             data: daily.map((data) => data.Recovered),
-            backgroundColor: "rgba(198, 235, 197,0.8)",
+            backgroundColor: "rgba(198, 235, 197,0.4)",
             borderColor: "#C6EBC5",
             showLine: false,
+            fill: true,
           },
           {
             label: "Deaths",
             data: daily.map((data) => data.Deaths),
-            backgroundColor: "rgba(250, 112, 112,0.8)",
+            backgroundColor: "rgba(250, 112, 112,0.4)",
             borderColor: "#FA7070",
             showLine: false,
+            fill: true,
           },
         ],
+      }}
+      options={{
+        plugins: {
+          legend: {
+            position: "bottom",
+            labels: {
+              boxWidth: 10,
+            },
+          },
+        },
       }}
     />
   );
