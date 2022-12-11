@@ -7,10 +7,12 @@ type DATADAILY = typeof dataDaily;
 type covidState = {
   daily: DATADAILY;
   country: string;
+  isLoading: boolean;
 };
 const initialState: covidState = {
   daily: dataDaily,
   country: "japan",
+  isLoading: false,
 };
 
 export const fetchAsyncGetDaily = createAsyncThunk(
@@ -26,7 +28,14 @@ const graphSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(fetchAsyncGetDaily.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchAsyncGetDaily.rejected, (state) => {
+      state.isLoading = false;
+    });
     builder.addCase(fetchAsyncGetDaily.fulfilled, (state, action) => {
+      state.isLoading = false;
       return {
         ...state,
         daily: action.payload.data,
