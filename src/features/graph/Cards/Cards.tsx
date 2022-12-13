@@ -1,4 +1,7 @@
 import { Card, CardContent, Grid, Typography } from "@mui/material";
+import CoronavirusIcon from "@mui/icons-material/Coronavirus";
+import MedicationIcon from "@mui/icons-material/Medication";
+import AirlineSeatFlatIcon from "@mui/icons-material/AirlineSeatFlat";
 import React, { FC } from "react";
 import CountUp from "react-countup";
 import { useSelector } from "react-redux";
@@ -10,7 +13,12 @@ const Cards: FC = () => {
       <Grid item xs={12} md={4}>
         <Card>
           <CardContent>
-            <Typography variant="h6" color="primary">
+            <Typography
+              variant="h6"
+              color="primary"
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <CoronavirusIcon fontSize="large" sx={{ mr: 1 }} />
               Infected Persons
             </Typography>
             <Typography variant="h5">
@@ -27,7 +35,12 @@ const Cards: FC = () => {
       <Grid item xs={12} md={4}>
         <Card>
           <CardContent>
-            <Typography variant="h6" color="primary">
+            <Typography
+              variant="h6"
+              color="primary"
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <MedicationIcon fontSize="large" sx={{ mr: 1 }} />
               Recovered Persons
             </Typography>
             <Typography variant="h5">
@@ -44,7 +57,12 @@ const Cards: FC = () => {
       <Grid item xs={12} md={4}>
         <Card>
           <CardContent>
-            <Typography variant="h6" color="primary">
+            <Typography
+              variant="h6"
+              color="primary"
+              sx={{ display: "flex", alignItems: "center" }}
+            >
+              <AirlineSeatFlatIcon fontSize="large" sx={{ mr: 1 }} />
               Deaths Persons
             </Typography>
             <Typography variant="h5">
