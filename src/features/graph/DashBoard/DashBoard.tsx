@@ -6,6 +6,8 @@ import {
   Container,
   Grid,
   Stack,
+  CircularProgress,
+  Alert,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../../app/hooks";
@@ -48,17 +50,30 @@ const DashBoard: FC = () => {
         <Grid item xs={12}>
           <SwitchCountry />
         </Grid>
-        <Grid item xs={12}>
-          <Cards />
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <LineChart />
-        </Grid>
-        <Grid item xs={12} md={4} sx={{ md: { mt: -5 } }}>
-          <PieChart />
-        </Grid>
+        {status === "pending" && (
+          <Grid item container xs={12} justifyContent="center">
+            <CircularProgress />
+          </Grid>
+        )}
+        {status === "error" && (
+          <Grid item xs={12}>
+            <Alert severity="error">Failed to retrieve data</Alert>
+          </Grid>
+        )}
+        {status === "success" && (
+          <>
+            <Grid item xs={12}>
+              <Cards />
+            </Grid>
+            <Grid item xs={12} md={8}>
+              <LineChart />
+            </Grid>
+            <Grid item xs={12} md={4} sx={{ md: { mt: -5 } }}>
+              <PieChart />
+            </Grid>
+          </>
+        )}
       </Grid>
-      {status}
     </div>
   );
 };
