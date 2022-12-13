@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../../app/hooks";
-import { selectDaily, fetchAsyncGetDaily } from "../graphSlice";
+import { selectDaily, fetchAsyncGetDaily, getStatus } from "../graphSlice";
 import moment from "moment";
 import SwitchCountry from "../SwitchCountry/SwitchCountry";
 import Cards from "../Cards/Cards";
@@ -19,6 +19,7 @@ import LineChart from "../LineChart/LineChart";
 const DashBoard: FC = () => {
   const dispatch = useAppDispatch();
   const daily = useSelector(selectDaily);
+  const status = useSelector(getStatus);
   useEffect(() => {
     dispatch(fetchAsyncGetDaily("japan"));
   }, [dispatch]);
@@ -57,6 +58,7 @@ const DashBoard: FC = () => {
           <PieChart />
         </Grid>
       </Grid>
+      {status}
     </div>
   );
 };

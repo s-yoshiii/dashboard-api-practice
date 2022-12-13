@@ -7,7 +7,7 @@ type DATADAILY = typeof dataDaily;
 type covidState = {
   daily: DATADAILY;
   country: string;
-  status: string;
+  status: "pending" | "success" | "error";
 };
 const initialState: covidState = {
   daily: dataDaily,
@@ -29,28 +29,23 @@ const graphSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // .addCase(fetchAsyncGetDaily.pending, (state) => {
-      //   state.status = "pending";
-      //   return {
-      //     ...state,
-      //   };
-      // })
+      .addCase(fetchAsyncGetDaily.pending, (state) => {
+        state.status = "pending";
+      })
       .addCase(fetchAsyncGetDaily.fulfilled, (state, action) => {
-        // state.status = "success";
         return {
-          ...state,
+          status: "success",
           daily: action.payload.data,
           country: action.payload.country,
         };
+      })
+      .addCase(fetchAsyncGetDaily.rejected, (state, action) => {
+        state.status = "error";
       });
-    // .addCase(fetchAsyncGetDaily.rejected, (state, action) => {
-    //   state.status = "error";
-    //   return { ...state };
-    // });
   },
 });
 
 export const selectDaily = (state: RootState) => state.graph.daily;
 export const selectCountry = (state: RootState) => state.graph.country;
-export const pending = (state: RootState) => state.graph.status;
+export const getStatus = (state: RootState) => state.graph.status;
 export default graphSlice.reducer;
